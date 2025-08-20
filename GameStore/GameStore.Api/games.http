@@ -1,4 +1,5 @@
-GET http://localhost:5081
+GET http://localhost:5081/games
 
 ###
 
+GET http://localhost:5081/games/1
