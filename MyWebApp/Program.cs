@@ -35,6 +35,7 @@ app.Run(async context =>
     await context.Response.WriteAsync("Hello from middleware 2!\r\n");
 });
 
+//this starts the app
 app.Run();
 
 
