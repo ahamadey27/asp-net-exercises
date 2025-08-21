@@ -3,3 +3,14 @@ GET http://localhost:5081/games
 ###
 
 GET http://localhost:5081/games/1
+
+###
+POST http://localhost:5081/games
+Content-Type: application/json
+
+ {
+    "name": "Minecraft", 
+    "genre": "Sandbox", 
+    "price": 26.95, 
+    "release date": 2011-11-18
+ }
