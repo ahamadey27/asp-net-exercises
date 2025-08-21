@@ -45,5 +45,7 @@ app.MapPut("games/{id}", (int id, UpdateGameDto updatedGame) =>
         updatedGame.ReleaseDate
     );
 
+    return Results.NoContent();
+
 });
 app.Run();

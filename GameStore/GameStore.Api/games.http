@@ -2,15 +2,28 @@ GET http://localhost:5081/games
 
 ###
 
-GET http://localhost:5081/games/1
+GET http://localhost:5081/games/
 
 ###
+
 POST http://localhost:5081/games
 Content-Type: application/json
 
- {
-    "name": "Minecraft", 
-    "genre": "Sandbox", 
-    "price": 26.95, 
-    "release date": "2011-11-18"
- }
+{
+    "name": "Lord of the Games", 
+    "genre": "Family", 
+    "price": 30.95,  
+    "releaseDate": "2020-11-18"
+}
+
+###
+
+PUT http://localhost:5081/games/1
+Content-Type: application/json
+
+{
+    "name": "The Legend of Zelda: Link of the Past",
+    "genre": "Adventure",
+    "price": 9.99,
+    "releaseDate": "2017-03-03"
+}
