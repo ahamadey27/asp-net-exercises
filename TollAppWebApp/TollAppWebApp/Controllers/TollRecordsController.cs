@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TollAppWebApp.Models;
+using TollAppWebApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace TollAppWebApp.Controllers
 {
@@ -12,22 +15,16 @@ namespace TollAppWebApp.Controllers
     [ApiController]
     public class TollRecordsController : ControllerBase
     {
-        private readonly ILogger<TollRecordsController> _logger;
+        private readonly TollContext _context;
 
-        public TollRecordsController(ILogger<TollRecordsController> logger)
+        public TollRecordsController(TollContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //GET api/tollrecords
+        [HttpGet]
+        
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
-        }
     }
 }
