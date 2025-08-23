@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/TollApp.API.props" />
-</Project>
