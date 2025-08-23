@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TollApp.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fdd781c3345758501afabe7a141d11d89eeefd77")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0cdbe450cd01c81c1456c421b6ddf78c1f7aaff8")]
 [assembly: System.Reflection.AssemblyProductAttribute("TollApp.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TollApp.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
