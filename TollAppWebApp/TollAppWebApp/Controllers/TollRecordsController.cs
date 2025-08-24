@@ -11,12 +11,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TollAppWebApp.Controllers
 {
+    //API controller, where base route is api/tollrecords (uses controller's class name minus "Controller" to form route)
     [Route("api/[controller]")]
     [ApiController]
     public class TollRecordsController : ControllerBase
     {
-        private readonly TollContext _context;
-
+        private readonly TollContext _context; 
+        
+        //inject TollContext via constructor to access database 
         public TollRecordsController(TollContext context)
         {
             _context = context;

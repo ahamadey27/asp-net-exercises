@@ -7,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers(); //Registers MVC controllers with the DI container
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 //register DbContext with the connection string
 string? connectionString = builder.Configuration.GetConnectionString("TollDatabase");
 builder.Services.AddDbContext<TollContext>(options => options.UseSqlite(connectionString));
