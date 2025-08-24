@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //register DbContext with the connection string
-string? connectionString = builder.Configuration.GetConnectionString("TollDatabase");
+string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<TollContext>(options => options.UseSqlite(connectionString));
 
 var app = builder.Build();
