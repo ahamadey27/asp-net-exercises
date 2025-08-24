@@ -11,6 +11,7 @@ namespace TollAppWebApp.Data
     {
         public TollContext(DbContextOptions<TollContext> options) : base(options) { }
         
-        public DbSet<TollRecord> TollRecords { get; set; } // DbSet represents the table of toll records
+    public DbSet<TollRecord> TollRecords { get; set; } // DbSet represents the table of toll records
+    public DbSet<Vehicle> Vehicles { get; set; } // table for Vehicles
     }
 }

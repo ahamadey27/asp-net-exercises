@@ -46,15 +46,57 @@ namespace TollAppWebApp.Controllers
         }
 
         // POST: api/tollrecords
-        [HttpPost]
-        public async Task<ActionResult<TollRecord>> CreateTollRecord(TollRecord record)
+        // Accept a DTO that contains a license plate (or vehicleId) plus amount and optional timestamp
+        public class CreateTollRecordDto
         {
-            // Set the timestamp to now if not provided (ensure some data consistency)
-            if (record.TimeStamp == default)
-                record.TimeStamp = DateTime.UtcNow;
+            public int? VehicleId { get; set; }
+            public string? LicensePlate { get; set; }
+            public int TollBoothId { get; set; }
+            public DateTime? TimeStamp { get; set; }
+            public decimal Amount { get; set; }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<TollRecord>> CreateTollRecord(CreateTollRecordDto dto)
+        {
+            Vehicle? vehicle = null;
+
+            if (dto.VehicleId.HasValue)
+            {
+                vehicle = await _context.Vehicles.FindAsync(dto.VehicleId.Value);
+            }
+
+            if (vehicle == null && !string.IsNullOrWhiteSpace(dto.LicensePlate))
+            {
+                vehicle = await _context.Vehicles.FirstOrDefaultAsync(v => v.LicensePlate == dto.LicensePlate);
+            }
+
+            // If still null and a license plate was provided, create a new Vehicle
+            if (vehicle == null && !string.IsNullOrWhiteSpace(dto.LicensePlate))
+            {
+                vehicle = new Vehicle { LicensePlate = dto.LicensePlate };
+                _context.Vehicles.Add(vehicle);
+                await _context.SaveChangesAsync();
+            }
+
+            // If we still don't have a vehicle, return BadRequest
+            if (vehicle == null)
+            {
+                return BadRequest("VehicleId or LicensePlate must be provided.");
+            }
+
+            var record = new TollRecord
+            {
+                VehicleId = vehicle.Id,
+                TollBoothId = dto.TollBoothId,
+                TimeStamp = dto.TimeStamp ?? DateTime.UtcNow,
+                Amount = dto.Amount,
+                Vehicle = vehicle
+            };
+
             _context.TollRecords.Add(record);
             await _context.SaveChangesAsync();
-            // Return 201 Created with the route to the new record
+
             return CreatedAtAction(nameof(GetTollRecord), new { id = record.Id }, record);
         }
 
